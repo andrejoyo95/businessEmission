@@ -61,7 +61,7 @@ io.on('connection', async function(socket) {
 				console.log(typeof(num.event))
 				let name = event+num.event+".jpg"
 				console.log(name)
-				fs.writeFile(name, img.data, function(err) { //... 
+				fs.writeFile('images/'+name, img.data, function(err) { //... 
 					console.log(num)
 					console.log('err: ', err)
 					console.log(typeof(img))
@@ -69,11 +69,11 @@ io.on('connection', async function(socket) {
 					console.log(img)
 				})
 				
-				if (num.event===50){
+				if (num.event===125){
 					let images = []
 					for (let i = 1; i < num.event; i++) {
  
-						images.push(event+i+".jpg")
+						images.push('images/'+event+i+".jpg")
 						
 					}
 					console.log('........................')
@@ -84,16 +84,18 @@ io.on('connection', async function(socket) {
 					console.log(images)
 					var videoshow = require('videoshow')
 					var videoOptions = {
-						fps: 25, //loop: 5, // seconds transition: true, transitionDuration: 0.1, // seconds
+						//fps: 25,
+						loop: 0.125, // seconds 
+						transition: false, //transitionDuration: 0.1, // seconds
 						videoBitrate: 1024,
 						videoCodec: 'libx264',
-						size: '640x?', //audioBitrate: '128k', audioChannels: 2,
+						size: '640x640', //audioBitrate: '128k', audioChannels: 2,
 						format: 'mp4',
 						pixelFormat: 'yuv420p'
 					}
 						
 					videoshow(images, videoOptions)
-					.save(event+'.mp4')
+					.save('videos/'+event+'.mp4')
 					.on('start', function (command) {
 						console.log('ffmpeg process started:', command)
 					})

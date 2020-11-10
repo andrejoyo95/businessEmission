@@ -84,7 +84,7 @@ function getCookie(cname) {
           emit = setInterval(function(){
               viewVideo(video,context);
               console.log('emitiendo')
-          },70);
+          },80);
           recordedChunks = [];
           initMediaRecorder();
       })
