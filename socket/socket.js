@@ -1,3 +1,5 @@
+let { server } = require('../app')
+let io = require('socket.io')(server)
 //let {comproveEmissionKey} = require('../controllers/comproveEmissionKey')
 let {comproveVisualizationCode} = require('../controllers/comproveVisualizationCode')
 

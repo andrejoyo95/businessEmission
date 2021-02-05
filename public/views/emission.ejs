@@ -19,11 +19,7 @@
 <body>
 
 	<div class="container">
-		<div class="sign">
-			<form action="closeSession" method="post">
-				<button class="btn right">Cerrar sesión</button>
-			</form>
-		</div>
+		<%- include(sign) %>
 		<div id="loggedIn" class="loggedIn">
 			<a href="/info/<%= key %>"><h2><%= title %></h2></a>
 			<div class="sectionContentStream">

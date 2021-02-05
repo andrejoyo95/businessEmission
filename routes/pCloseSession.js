@@ -1,23 +1,23 @@
+let {closeSession} = require('../controllers/closeSession')
 
-const axios = require('axios')
-
-async function pCloseSession (userType, token, bSessionID) {
-	let url = 'https://sign-in-business-services.herokuapp.com/closeSession'
-	//let url = 'http://localhost:7000/closeSession'
-    console.log('from route pCloseSession: ', userType, token, bSessionID)
-    return axios.post(url, {
-		userType: userType,
-		token: token,
-		sessionID: bSessionID
-    })
-    .then(async function (response) {
-        console.log(response.data)
-        return await response.data
-    })
-    .catch(async function (error) {
-        console.log(error)
-        return await error
-    })
+async function pCloseSession (req, res) {
+    console.log('------------------------------pCloseSession--------------------------------')
+    let cookies = req.cookies
+    console.log('-.-.-.-.-.-..-.-.-.-..-.-.-.-.-.-.-.-.-.-.-.-.-..-.')
+    console.log(cookies)
+    let response = await closeSession(cookies.userType, cookies.token, cookies.bSessionID)
+    console.log('---------------------------AXIOS response---------------------------')
+    console.log(response)
+    if (response.result=='Doc session deleted') {
+        res.cookie('userType', 'business', { maxAge: 0, httpOnly: true })
+        res.cookie('token', 'expired', { maxAge: 0, httpOnly: true })
+        res.cookie('sessionID', 'expired', { maxAge: 0, httpOnly: true })
+        res.cookie('eventStream', 'expired', { maxAge: 0, httpOnly: true })
+        res.cookie('idEmission', 'expired', {maxAge: 0, httpOnly: false})
+        res.redirect('/')
+    } else{
+        res.redirect('/emission')
+    }
 }
 
 module.exports.pCloseSession = pCloseSession

@@ -1,0 +1,7 @@
+<div class='sign'>
+	<p>Usuario: <%= nickName %></p>
+	<p>Negocio: <a href="/manageBusiness/<%= keySession %>"><%= businessName %></a></p>
+	<form method='post' action='/closeSession'>
+		<button class='btn right'>Cerrar sesión</button>
+	</form>
+</div>
