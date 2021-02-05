@@ -15,8 +15,8 @@ if (env==='dev') {
     businessInfoURL = 'http://localhost:9001/'
 } else {
     businessLogInOut = 'https://sign-in-business-services.herokuapp.com/',
-    businessSessionsURL = 'https://businessSessions.herokuapp.com/'
-    businessInfoURL = 'https://businessInfo.herokuapp.com/'
+    businessSessionsURL = 'https://business-sessions.herokuapp.com/'
+    businessInfoURL = 'https://business-info.herokuapp.com/'
 }
 
 module.exports = {

@@ -6,7 +6,7 @@ async function getBusinessName(routeName) {
     console.log('---AXIOS request to: ', url)
     return axios.get(url, {
         params: {
-        	routeName: routeName,
+        	routeName: routeName
         }
     })
     .then(async function (response) {
