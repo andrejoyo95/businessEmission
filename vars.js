@@ -11,7 +11,7 @@ console.log(env)
 let urls = {}
 if (env==='dev') {
     businessLogInOut = 'http://localhost:7000/',
-    businessSessionsURL = 'http://localhost:9000/',
+    businessSessionsURL = 'http://localhost:9002/',
     businessInfoURL = 'http://localhost:9001/'
 } else {
     businessLogInOut = 'https://sign-in-business-services.herokuapp.com/',
