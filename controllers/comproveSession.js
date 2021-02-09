@@ -4,8 +4,6 @@ async function comproveSession(userType, token, sessionID) {
 	let { businessSessionsURL } = require('../vars') //let url = 'https://businessSessions.herokuapp.com/comproveSession' 'http://localhost:9000/comproveSession'
     let url = businessSessionsURL + 'comproveSession'
     console.log('---AXIOS request to: ', url)
-    console.log('token: ', token)
-    console.log('sessionID: ', sessionID)
     if (token && sessionID) {
 	    return axios.get(url, {
 	        params: {
