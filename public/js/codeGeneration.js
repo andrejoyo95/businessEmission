@@ -23,8 +23,8 @@ function comproveEnterPress(e) {
 }
 function generateCode() {
   let email = document.getElementById('email');
-  let url = 'http://localhost:9000/saveVisualizationCode'
-  //let url = 'https://visualization-codes-services.herokuapp.com/saveVisualizationCode'
+  //let url = 'http://localhost:9000/saveVisualizationCode'
+  let url = 'https://visualization-codes-services.herokuapp.com/saveVisualizationCode'
   axios.get(url, {
     params: {
         email: email.value,
