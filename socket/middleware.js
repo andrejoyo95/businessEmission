@@ -1,8 +1,8 @@
 let { io } = require('./socket')
 // socket middleware
 io.use((socket, next) => {
-	console.log('socket middleware socket middleware socket middleware socket middleware socket middleware')
-	console.log(socket.handshake.headers)
+	//console.log('socket middleware')
+	//console.log(socket.handshake.headers)
 	let host = socket.handshake.headers.host
 	if(host==='localhost:5000'){ 
 		console.log('host admitido')

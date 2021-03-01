@@ -10,11 +10,6 @@ async function socketClient(socket, key, visualizationCode) { //let fs = require
 		socket.disconnect()
 		console.log('Credenciales de transmisión no válidos, socket desconectado.')
 	}
-
-	socket.on('disconnect', () => {
-		console.log(socket.id)
-	 	console.log('Cliente desconectado')
-	})
 }
 
 module.exports.socketClient = socketClient

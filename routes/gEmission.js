@@ -11,7 +11,7 @@ async function gEmission (req, res) {
         let ejsData = session
         ejsData.title = 'Emisión'
         ejsData.key = session.keySession
-        ejsData.emissionKey = 'apOPENCOh50ssIGw'
+        ejsData.emissionKey = 'businessEmission'
         ejsData.error = ''
         ejsData.businessName = await getBusinessName(session.keySession)
         res.render('emission', ejsData)

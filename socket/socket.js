@@ -7,16 +7,24 @@ let { socketClient } = require('./socketClient')
 
 require('./middleware')
 let connectedIDs = []
-
+let viewers = 0
+module.exports.viewers = viewers
 io.on('connection', async function(socket) {
-	console.log('----------------------socket ID--------------------: ', socket.id)
+	console.log('socket ID: ', socket.id)
 	connectedIDs.push(socket.id)
-	console.log('connectedIDs connectedIDs connectedIDs connectedIDs connectedIDs ', connectedIDs) //console.log(socket) console.log(socket.conn)
-	let { emissionKey, eventStream, key, visualizationCode } = socket.handshake.query
-	console.log('emissionKey: ', emissionKey, 'eventStream: ', eventStream, 'key: ', key, 'visualizationCode: ', visualizationCode) //console.log('COOKIE: ', socket.handshake.headers.cookie)
-	if (emissionKey) { //code==='emission'  validEmissionKey = comproveEmissionKey(emissionKey)
+	console.log('connectedIDs', connectedIDs) //console.log(socket) console.log(socket.conn)
+	let { emissionKey, eventStream, key, visualizationCode } = socket.handshake.query //console.log('emissionKey: ', emissionKey, 'eventStream: ', eventStream, 'key: ', key, 'visualizationCode: ', visualizationCode) //console.log('COOKIE: ', socket.handshake.headers.cookie)
+	if (emissionKey=='businessEmission') { //code==='emission'  validEmissionKey = comproveEmissionKey(emissionKey)
 		socketBusiness(socket, eventStream)
 	} else {
+		viewers++
+		console.log('Espectadores: ', viewers)
 		socketClient(socket, key, visualizationCode)
+
+		socket.on('disconnect', () => {
+			viewers--
+			console.log('Espectadores: ', viewers)
+		 	console.log('Cliente desconectado ', socket.id)
+		})
 	}
 })

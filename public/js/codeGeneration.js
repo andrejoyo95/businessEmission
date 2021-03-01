@@ -23,8 +23,8 @@ function comproveEnterPress(e) {
 }
 function generateCode() {
   let email = document.getElementById('email');
-  //let url = 'http://localhost:9000/saveVisualizationCode'
-  let url = 'https://visualization-codes-services.herokuapp.com/saveVisualizationCode'
+  let url = 'http://localhost:9000/saveVisualizationCode'
+  //let url = 'https://visualization-codes-services.herokuapp.com/saveVisualizationCode'
   axios.get(url, {
     params: {
         email: email.value,
@@ -34,8 +34,10 @@ function generateCode() {
     }
   })
   .then(res => {//console.log(res.data);
-      if (!res.data) {
-          console.log(' - ')
+      if (res.data.error) {
+        console.log('error generating code');
+        alert('Error al generar el código de visualización.');
+        window.location.replace("/");
       } else{
           console.log(res.data);
           let codeTable = document.getElementById('codeTable');
