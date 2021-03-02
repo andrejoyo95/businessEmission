@@ -5,7 +5,7 @@ async function pCloseSession (req, res) {
     let cookies = req.cookies
     console.log('-.-.-.-.-.-..-.-.-.-..-.-.-.-.-.-.-.-.-.-.-.-.-..-.')
     console.log(cookies)
-    let response = await closeSession(cookies.userType, cookies.token, cookies.bSessionID)
+    let response = await closeSession(cookies.userType, cookies.token, cookies.sessionID)
     console.log('---------------------------AXIOS response---------------------------')
     console.log(response)
     if (response.result=='Doc session deleted') {
