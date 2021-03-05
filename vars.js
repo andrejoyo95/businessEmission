@@ -1,13 +1,12 @@
 let env
-console.log('---------------vars: env---------------')
+//console.log('---------------vars: env---------------')
 try {
 	env = require('../index').env
-	console.log('env: ', env)
+	//console.log('env: ', env)
 } catch {
-    console.log('env: ', env)
+    //console.log('env: ', env)
 }
 
-let urls = {}
 if (env==='dev') {
     businessLogInOut = 'http://localhost:7000/',
     businessSessionsURL = 'http://localhost:9002/',

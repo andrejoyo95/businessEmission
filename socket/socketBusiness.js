@@ -1,4 +1,4 @@
-let messageOnConsole = false
+//let messageOnConsole = false
 async function socketBusiness(socket, eventStream) { //let fs = require('fs')let num = {}
 	console.log('-----Business socket connected-----')
 	socket.on(eventStream, function (image) {

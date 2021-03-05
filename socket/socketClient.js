@@ -1,15 +1,11 @@
-let {comproveVisualizationCode} = require('../controllers/comproveVisualizationCode')
-let {controlOveruse} = require('../controllers/controlOveruse')
+const { controlOveruse } = require("../controllers/controlOveruse")
 
-async function socketClient(socket, key, visualizationCode) { //let fs = require('fs')let num = {}
-	let validVisualizationCode = await comproveVisualizationCode(key, visualizationCode) //console.log(validVisualizationCode)
-	if(validVisualizationCode) {
-		let usedCodes =  validVisualizationCode.usedCodes
-		controlOveruse(socket, usedCodes, visualizationCode)
-	} else {
-		socket.disconnect()
-		console.log('Credenciales de transmisión no válidos, socket desconectado.')
-	}
+async function socketClient(socket, visualizationCode, io, client_usedCode, clientID, viewers) { //let fs = require('fs')let num = {}
+	console.log('-----------------socketClient-----------------')
+	controlOveruse(socket, client_usedCode, visualizationCode, clientID, viewers)
+	let clients = Object.entries(io.engine.clients)
+	console.log('ID de cliente: ', clients[clients.length-1][0])
+	console.log('Código usado: ', visualizationCode)
 }
 
 module.exports.socketClient = socketClient

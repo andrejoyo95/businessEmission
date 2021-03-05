@@ -6,25 +6,29 @@ let { socketBusiness } = require('./socketBusiness')
 let { socketClient } = require('./socketClient')
 
 require('./middleware')
-let connectedIDs = []
-let viewers = 0
-module.exports.viewers = viewers
+let viewers = [0]
+let client_usedCode = []
 io.on('connection', async function(socket) {
-	console.log('socket ID: ', socket.id)
-	connectedIDs.push(socket.id)
-	console.log('connectedIDs', connectedIDs) //console.log(socket) console.log(socket.conn)
+	console.log("------------------------ socket ------------------------")
 	let { emissionKey, eventStream, key, visualizationCode } = socket.handshake.query //console.log('emissionKey: ', emissionKey, 'eventStream: ', eventStream, 'key: ', key, 'visualizationCode: ', visualizationCode) //console.log('COOKIE: ', socket.handshake.headers.cookie)
 	if (emissionKey=='businessEmission') { //code==='emission'  validEmissionKey = comproveEmissionKey(emissionKey)
 		socketBusiness(socket, eventStream)
 	} else {
-		viewers++
-		console.log('Espectadores: ', viewers)
-		socketClient(socket, key, visualizationCode)
+		let clientID = socket.id
+		console.log('socket client ID: ', clientID)
+		socketClient(socket, visualizationCode, io, client_usedCode, clientID, viewers)
+		console.log('client_usedCode:')
+		console.log(client_usedCode)
+		console.log('Espectadores: ', viewers[0])
 
 		socket.on('disconnect', () => {
-			viewers--
-			console.log('Espectadores: ', viewers)
-		 	console.log('Cliente desconectado ', socket.id)
+			viewers[0]--
+			let client_usedCode_indexToRemove = client_usedCode.findIndex(element => element.clientID == clientID)
+			client_usedCode.splice(client_usedCode_indexToRemove, 1)
+			console.log('client_usedCode:')
+			console.log(client_usedCode)
+			console.log('Cliente desconectado ', clientID)
+			console.log('Espectadores: ', viewers[0])
 		})
 	}
 })
