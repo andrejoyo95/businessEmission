@@ -30,11 +30,12 @@ io.on('connection', async function(socket) {
 			viewers[0]--
 			let client_usedCode_indexToRemove = client_usedCode.findIndex(element => element.clientID == clientID)
 			client_usedCode.splice(client_usedCode_indexToRemove, 1)
+			console.log()
+			console.log()
 			console.log('client_usedCode:')
 			console.log(client_usedCode)
 			console.log('Cliente desconectado ', clientID)
 			console.log('Espectadores: ', viewers[0])
-			
 			socket.broadcast.emit('viewers', viewers[0])
 		})
 	}
