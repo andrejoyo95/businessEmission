@@ -12,7 +12,7 @@ io.use((socket, next) => {
 	} else {
 		next(new Error('Host authentication error'))
 	}
-	console.log(host)
+	//console.log(host)
 	next()
 })
 

@@ -32,15 +32,28 @@ function getCookie(cname) {
   
   let emissionKey = document.getElementById('emissionKey');
   
-  let eventStream = getCookie('eventStream')
+  let eventStream = getCookie('eventStream');
   
+  let viewers = document.getElementById('viewers');
+
   let socket = io({
       query : {
           key: key.innerHTML,
           emissionKey : emissionKey.innerHTML,
           eventStream : eventStream
       }
-  });
+  })
+
+  let socketViewers = io({
+      query : {
+          key: key.innerHTML,
+          emissionKey : emissionKey.innerHTML
+      }
+  })
+
+  socketViewers.on('viewers', function (amountOfViewers) {
+    viewers.innerText = amountOfViewers
+  })
   
   let emissionEvent = document.getElementById('emissionEvent');
   emissionEvent.value = eventStream;
@@ -83,7 +96,7 @@ function getCookie(cname) {
       $('#start').click(function() {
           emit = setInterval(function(){
               viewVideo(video,context);
-              console.log('emitiendo')
+              //console.log('emitiendo')
           },80);
           recordedChunks = [];
           initMediaRecorder();

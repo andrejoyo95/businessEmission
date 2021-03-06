@@ -1,10 +1,10 @@
 const axios = require('axios')
 
 async function comproveVisualizationCode(key, code) {
-    console.log('------------comproveVisualizationCode------------')
+    //console.log('------------comproveVisualizationCode------------')
     let { visualizationCodesServices } = require('../vars') //let url = 'https://visualization-codes-services.herokuapp.com/comproveVisualizationCode' 'http://localhost:9000/comproveVisualizationCode'
     let url = visualizationCodesServices + 'comproveVisualizationCode'
-    console.log('AXIOS request to: ', url)
+    //console.log('AXIOS request to: ', url)
     return axios.get(url, {
         params: {
             route: key,
