@@ -27,7 +27,8 @@ async function pSignInBusinessServer (req, res) {
             //res.cookie('emissionKey', idEmission, {maxAge: 72000000, httpOnly: false})
             console.log(response)
             //res.send(response)
-            res.redirect('/emission')
+            //res.redirect('/emission')
+            res.redirect('https://ayacuchoseguro.herokuapp.com/loginFromLocal')
         }
     })    
 }
