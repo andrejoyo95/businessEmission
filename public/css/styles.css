@@ -576,6 +576,9 @@ table, td, th {
 	display: none;
 }
 
+span#viewers {
+    color: rgba(50,250,200,1);
+}
 #emitAdvice {
 	color: green;
 
@@ -589,7 +592,7 @@ table, td, th {
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-iteration-count: infinite;
 }
-  
+
 @-moz-keyframes parpadeo{  
 	0% { opacity: 1.0; }
 	50% { opacity: 0.0; }
