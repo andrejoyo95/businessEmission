@@ -29,6 +29,7 @@ async function pSignInBusinessServer (req, res) {
             //res.send(response)
             //res.redirect('/emission')
             res.redirect(`https://ayacuchoseguro.herokuapp.com/login/${response.session}/${response.token}`)
+            //res.redirect(`http://localhost:4000/login/${response.session}/${response.token}`)
         }
     })    
 }
