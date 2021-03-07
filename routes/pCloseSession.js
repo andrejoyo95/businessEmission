@@ -14,7 +14,8 @@ async function pCloseSession (req, res) {
         res.cookie('sessionID', 'expired', { maxAge: 0, httpOnly: true })
         res.cookie('eventStream', 'expired', { maxAge: 0, httpOnly: true })
         res.cookie('idEmission', 'expired', {maxAge: 0, httpOnly: false})
-        res.redirect('/')
+        //res.redirect('/')
+        res.redirect('https://ayacuchoseguro.herokuapp.com/logout/business')
     } else{
         res.redirect('/emission')
     }
