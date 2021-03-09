@@ -14,7 +14,7 @@ io.on('connection', async function(socket) {
 	let { emissionKey, eventStream, key, visualizationCode } = socket.handshake.query //console.log('emissionKey: ', emissionKey, 'eventStream: ', eventStream, 'key: ', key, 'visualizationCode: ', visualizationCode) //console.log('COOKIE: ', socket.handshake.headers.cookie)
 	if (emissionKey=='businessEmission') { //code==='emission'  validEmissionKey = comproveEmissionKey(emissionKey)
 		if (eventStream){
-			socketBusiness(socket, eventStream)
+			socketBusiness(socket, eventStream, client_usedCode, io)
 		} else {
 			socketViewers(socket)
 		}

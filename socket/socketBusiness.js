@@ -1,12 +1,23 @@
 //let messageOnConsole = false
-async function socketBusiness(socket, eventStream) { //let fs = require('fs')let num = {}
+let sessionClosed = false
+async function socketBusiness(socket, eventStream, client_usedCode, io) { //let fs = require('fs')let num = {}
 	//console.log('-----Business socket connected-----')
 	socket.on(eventStream, function (image) {
 		//if (!messageOnConsole) emissionWarning()
 		socket.broadcast.emit(eventStream, image)
 	})
 	socket.on('disconnect', () => {
-		//console.log('----- Socket negocio desconectado-----')			
+		console.log('----- Socket negocio desconectado-----')
+		if (!sessionClosed){
+			let clientsIDs = client_usedCode.map(element => element.clientID)
+			let clientsDisconnected = 0
+			clientsIDs.forEach(element => {
+				io.sockets.connected[element].disconnect()
+				clientsDisconnected++
+			})
+			console.log(`Al cerrar sesión, se ha desconectado a ${clientsDisconnected} espectadores`)
+			sessionClosed = true
+		}
 	})
 }
 
