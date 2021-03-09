@@ -1,7 +1,8 @@
 //let messageOnConsole = false
-let sessionClosed = false
+let sessionClosed
 async function socketBusiness(socket, eventStream, client_usedCode, io) { //let fs = require('fs')let num = {}
 	//console.log('-----Business socket connected-----')
+	sessionClosed = false
 	socket.on(eventStream, function (image) {
 		//if (!messageOnConsole) emissionWarning()
 		socket.broadcast.emit(eventStream, image)
