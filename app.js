@@ -17,3 +17,5 @@ server.listen(port, function() {
 	console.log('Server on port ',port);
 	//log.info('Servidor escuchando a través del puerto ',port)
 })
+
+module.exports.port = port
